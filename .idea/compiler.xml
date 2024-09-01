@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="spring-security-folksdev" />
+        <module name="jwt-token" />
         <module name="basic-auth" />
       </profile>
     </annotationProcessing>
@@ -15,6 +16,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="basic-auth" options="-parameters" />
+      <module name="jwt-token" options="-parameters" />
       <module name="spring-security-folksdev" options="-parameters" />
     </option>
   </component>
