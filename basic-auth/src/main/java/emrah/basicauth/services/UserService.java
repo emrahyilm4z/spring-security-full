@@ -44,11 +44,6 @@ public class UserService {
                 .build();
 
         userRepository.save(newUser);
-
-        User user1 = userRepository.findByUsername(user.userName()).orElseThrow();
-        System.out.println(user1.getAuthorities());
-
-
     }
 
 }
