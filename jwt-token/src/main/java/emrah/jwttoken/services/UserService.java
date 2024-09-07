@@ -34,7 +34,7 @@ public class UserService implements UserDetailsService {
         return userRepository.findByUsername(username);
     }
 
-    public void createUser(CreateUserRequest user) {
+    public User createUser(CreateUserRequest user) {
 
         User newUser = User.builder()
                 .name(user.name())
@@ -48,6 +48,8 @@ public class UserService implements UserDetailsService {
                 .build();
 
         userRepository.save(newUser);
+        
+        return newUser;
     }
 
     @Override
