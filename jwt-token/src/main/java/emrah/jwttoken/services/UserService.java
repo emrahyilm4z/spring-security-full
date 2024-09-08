@@ -38,7 +38,7 @@ public class UserService implements UserDetailsService {
 
         User newUser = User.builder()
                 .name(user.name())
-                .username(user.userName())
+                .username(user.username())
                 .password(passwordEncoder.encode(user.password()))
                 .authorities(user.authorities())
                 .accountNonExpired(true)
@@ -48,7 +48,7 @@ public class UserService implements UserDetailsService {
                 .build();
 
         userRepository.save(newUser);
-        
+
         return newUser;
     }
 

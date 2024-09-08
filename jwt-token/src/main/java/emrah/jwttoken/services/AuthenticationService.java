@@ -1,7 +1,6 @@
 package emrah.jwttoken.services;
 
-import emrah.jwttoken.dto.AuthRequest;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -11,6 +10,7 @@ import org.springframework.stereotype.Service;
  * @Date: Sept 2024
  */
 
+@Slf4j
 @Service
 public class AuthenticationService {
 
@@ -25,6 +25,7 @@ public class AuthenticationService {
         if (authentication.isAuthenticated()) {
             return jwtService.generateToken(authentication.getName());
         }
+        log.info("Invalid User : {}", authentication.getName());
         throw new UsernameNotFoundException("User not found : " + authentication.getName());
     }
 }

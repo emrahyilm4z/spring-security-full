@@ -22,7 +22,7 @@ import java.util.Map;
 @Service
 public class JwtService {
 
-    @Value("${jwt-key}")
+    @Value("${jwt.key}")
     private String SECRET;
 
     public String generateToken(String username) {
@@ -59,6 +59,7 @@ public class JwtService {
         return (username.equals(userDetails.getUsername()) && !expirationDate.before(new Date()));
 
     }
+
     private Date extractExpiration(String token) {
 
         Claims claims = Jwts.parserBuilder()
