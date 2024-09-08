@@ -4,6 +4,7 @@ package emrah.jwttoken.services;
 import emrah.jwttoken.dto.CreateUserRequest;
 import emrah.jwttoken.entities.User;
 import emrah.jwttoken.repository.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -54,6 +55,8 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
+
+        Optional<User> user = userRepository.findByUsername(username);
+        return user.orElseThrow(EntityNotFoundException::new);
     }
 }

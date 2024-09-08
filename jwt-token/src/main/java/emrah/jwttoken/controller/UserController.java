@@ -4,12 +4,8 @@ import emrah.jwttoken.dto.AuthRequest;
 import emrah.jwttoken.dto.CreateUserRequest;
 import emrah.jwttoken.entities.User;
 import emrah.jwttoken.services.AuthenticationService;
-import emrah.jwttoken.services.JwtService;
 import emrah.jwttoken.services.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -24,13 +20,10 @@ public class UserController {
 
     private final UserService userService;
 
-    private final AuthenticationManager authenticationManager;
-
     private final AuthenticationService authenticationService;
 
-    public UserController(UserService userService, AuthenticationManager authenticationManager, AuthenticationService authenticationService) {
+    public UserController(UserService userService, AuthenticationService authenticationService) {
         this.userService = userService;
-        this.authenticationManager = authenticationManager;
         this.authenticationService = authenticationService;
     }
 
@@ -48,9 +41,7 @@ public class UserController {
     @PostMapping("/generateToken")
     public String generateToken(@RequestBody AuthRequest authRequest) {
 
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.username(), authRequest.password()));
-
-        return authenticationService.authenticate(authentication);
+        return authenticationService.authenticate(authRequest);
 
     }
 

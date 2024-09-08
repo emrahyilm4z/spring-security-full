@@ -28,9 +28,6 @@ public class JwtService {
     public String generateToken(String username) {
 
         Map<String, Object> claims = new HashMap<>();
-        claims.put("sub", username);
-        claims.put("iat", new Date().getTime());
-        claims.put("exp", new Date().getTime() + 24 * 60 * 60 * 1000);
 
         return createToken(claims, username);
     }
